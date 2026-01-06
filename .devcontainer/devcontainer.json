@@ -1,0 +1,48 @@
+{
+  "name": "tb4-humble-gz-devcontainer",
+  "image": "tb4-humble-gz",
+
+  "remoteUser": "ros",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+
+  "runArgs": [
+    "--net=host",
+
+    "--env", "DISPLAY=${localEnv:DISPLAY}",
+    "--env", "QT_X11_NO_MITSHM=1",
+    "--volume", "/tmp/.X11-unix:/tmp/.X11-unix:rw",
+
+    "--device=/dev/dri:/dev/dri",
+    "--group-add=video",
+
+    "--cap-add=SYS_PTRACE",
+    "--security-opt=seccomp=unconfined",
+    "--volume=/home/karol/.gz:/home/karol/.gz"
+  ],
+
+  "containerEnv": {
+    "IGN_GAZEBO_RESOURCE_PATH": "/opt/ros/humble/share:/workspaces/turtle_sim/install:/workspaces/turtle_sim/src/turtlebot_sim/models",
+    "GZ_SIM_RESOURCE_PATH": "/opt/ros/humble/share:/workspaces/turtle_sim/install:/workspaces/turtle_sim/src/turtlebot_sim/models",
+    "ROS_DOMAIN_ID": "0",
+    "NVIDIA_VISIBLE_DEVICES": "all",
+    "NVIDIA_DRIVER_CAPABILITIES": "all",
+    "LANG": "en_US.UTF-8",
+    "LC_ALL": "en_US.UTF-8"
+  },
+
+  "postCreateCommand": "/bin/bash .devcontainer/postCreateCommand.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-iot.vscode-ros",
+        "ms-vscode.cpptools",
+        "ms-python.python"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

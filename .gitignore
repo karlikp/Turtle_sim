@@ -1,0 +1,25 @@
+__pycache__
+.pytest_cache
+*.egg-info
+.vscode/c_cpp_properties.json
+*.ipynb            
+
+# Personal notes
+README_beginner.md
+AI_context_file.md
+
+#ROS2
+
+build/
+install/
+log/
+src/build/
+src/install/
+src/log/
+__pycache__
+
+#Working directiories
+
+worlds/
+custom_map_QGC/
+HITNET_venv/
