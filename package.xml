@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
 
-  <name>dron_sim</name>
+  <name>turtle_sim</name>
 
   <version>0.0.0</version>
   <maintainer email="kp306682@student.polsl.pl">karlikp</maintainer>

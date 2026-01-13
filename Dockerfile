@@ -6,6 +6,8 @@ SHELL ["/bin/bash", "-c"]
 
 # Podstawowe narzędzia + repozytoria
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-pip \
+    python3-venv \
     ca-certificates \
     curl \
     gnupg2 \
@@ -29,14 +31,6 @@ RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/r
     http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" \
     > /etc/apt/sources.list.d/ros2.list
 
-# (Opcjonalnie, ale praktyczne) repo OSRF — daje nowsze poprawki w ramach tej samej dystrybucji Gazebo (Fortress),
-# bez zmiany na Harmonic itd. – wciąż ABI-kompatybilne w ramach tej samej "major" linii.
-# Źródło: oficjalne zalecenia instalacji Gazebo z ROS. :contentReference[oaicite:2]{index=2}
-RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" \
-    > /etc/apt/sources.list.d/gazebo-stable.list && \
-    curl -sSL https://packages.osrfoundation.org/gazebo.key \
-    | apt-key add -
-
 # Instalacja ROS 2 + TurtleBot4 + Gazebo (Fortress) + narzędzia
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-humble-desktop \
@@ -57,6 +51,24 @@ RUN rosdep update
 
 # Przygotuj środowisko przy starcie kontenera
 RUN echo "source /opt/ros/humble/setup.bash" >> /etc/bash.bashrc
+
+RUN sudo apt-get update && sudo apt-get install wget
+RUN sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+RUN wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+RUN sudo apt-get update
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ignition-fortress \
+    ros-humble-turtlebot4-simulator \
+ && rm -rf /var/lib/apt/lists/*
+
+
+# uav_camera_det (pip: numpy + opencv)
+RUN pip3 install ultralytics && \
+    python3 -m pip uninstall -y \
+      numpy opencv-python opencv-python-headless opencv-contrib-python opencv-contrib-python-headless \
+      || true && \
+    python3 -m pip install --no-cache-dir "numpy==1.26.4" "opencv-python<4.10"
 
 # Użytkownik nie-root (praktyczne przy X11/plikach)
 ARG USERNAME=ros

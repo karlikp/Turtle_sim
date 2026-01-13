@@ -1,5 +1,4 @@
-# dron_sim
-Simulation of UAV in Gazebo with ROS2, PX4 Autopilot and QGroundControl.
+# Turtle_sim
 
 ### Requirements
 - **Docker** (Docker CLI recommended)
@@ -9,32 +8,9 @@ Simulation of UAV in Gazebo with ROS2, PX4 Autopilot and QGroundControl.
   - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
   - [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
-  - **Gazebo assets** saved to /home/"host"/.gz/fuel/fuel.gazebosim.org/openrobotics/models/
-  "host" is your nickname
-
-  
-
-
 ### Docker build
 ```bash
 docker build -t turtle_sim:latest . --build-arg USER_UID=$(id -u)
-```
-
-To set DOCKER_GPU_PARAM environment variable, run:
-```bash
-source ./scripts/set_GPU_param.sh
-```
-
-### Docker run
-Running docker with GPU support requires [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html), but if you don't have NVIDIA GPU, you can remove the `--gpus=all` flag and run this container only with CPU.
-```bash
-docker run --rm --net host --ipc host --gpus=all --privileged -it \
-    -e DISPLAY=${DISPLAY} \
-    -e ROS_DOMAIN_ID=0 \
-    -e NVIDIA_VISIBLE_DEVICES=all \
-    -e NVIDIA_DRIVER_CAPABILITIES=all \
-    -v=/tmp/.X11-unix:/tmp/.X11-unix \
-    dron_sim:latest ros2 launch sim_bringup sim.launch.py
 ```
 
 ### Run for development
@@ -45,21 +21,37 @@ This will open the repository in the container and you can start developing.
 
 To rebuild workspace use shortcut `Ctrl+Shift+B` in the vscode.
 
-### Symulation start for TurtleBor4
+### Run simulation in the office
 
-C
-ros2 launch turtlebot4_ignition_bringup <TAB><TAB>
+1. Launch simulation in the gazebo:
 
-### Update ROS2 after develop
-
-colcon build --symlink-install
+In first terminal:
+```bash
+colcon build
 source install/setup.bash
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=office model:=lite x:=4 y:=7
+```
+2. Execute visualization in the RVIZ2:
 
-## Acknowledgement
-- https://github.com/PX4/PX4-Autopilot
-- https://github.com/ultralytics/ultralytics
-- https://www.ros.org/
-- https://gazebosim.org/
+In second terminal:
+```bash
+source install/setup.bash
+rviz2
+```
 
-Enable async CUDA allocator
-export TF_GPU_ALLOCATOR=cuda_malloc_async
+Add -> By topic -> /oakd/rgb/preview/depth/Image
+
+Set bellow settings:
+![alt text](images/image.png)
+
+Add -> By topic -> /oakd/rgb/preview/image_raw/Image
+
+3. Execute object detection:
+
+In third terminal
+```bash
+source install/setup.bash
+python3 turtlebot_sim/uav_camera_det.py
+```
+
+
