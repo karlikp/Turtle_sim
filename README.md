@@ -37,6 +37,12 @@ ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=off
 ```
 This command starts the TurtleBot4 Lite model in the `office` world with the specified initial position.
 
+<p align="center">
+  <img src="images/gazebo.png" alt="RViz depth image configuration">
+  <br>
+  <em>Figure 1: RViz depth image configuration</em>
+</p>
+
 **2. Visualize Sensor Data in RViz2**
 
 Open a second terminal and start RViz2:
@@ -53,7 +59,7 @@ rviz2
 3. Configure the display parameters as shown below:
 
 <p align="center">
-  <img src="images/image.png" alt="RViz depth image configuration">
+  <img src="images/depth.png" alt="RViz depth image configuration">
   <br>
   <em>Figure 1: RViz depth image configuration</em>
 </p>
@@ -63,11 +69,24 @@ rviz2
 2. Select:
 `oakd/rgb/preview/image_raw/Image`
 
+<p align="center">
+  <img src="images/rgb.png" alt="RViz depth image configuration">
+  <br>
+  <em>Figure 1: RViz depth image configuration</em>
+</p>
+
 **3. Run Object Detection**
 
 Open a third terminal and execute:
 ```bash
 source install/setup.bash
+```
+
+<p align="center">
+  <img src="images/object_detection.png" alt="RViz depth image configuration">
+  <br>
+  <em>Figure 1: RViz depth image configuration</em>
+</p>
 python3 turtlebot_sim/uav_camera_det.py
 ```
 This script subscribes to the camera topics and performs object detection during the simulation runtime.
