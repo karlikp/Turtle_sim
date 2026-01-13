@@ -80,6 +80,7 @@ rviz2
 Open a third terminal and execute:
 ```bash
 source install/setup.bash
+python3 turtlebot_sim/camera_det.py
 ```
 
 <p align="center">
@@ -87,7 +88,3 @@ source install/setup.bash
   <br>
   <em>Figure 4: Object detection view</em>
 </p>
-python3 turtlebot_sim/camera_det.py
-```
-This script subscribes to the camera topics and performs object detection during the simulation runtime.
-
