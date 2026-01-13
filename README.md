@@ -21,37 +21,54 @@ This will open the repository in the container and you can start developing.
 
 To rebuild workspace use shortcut `Ctrl+Shift+B` in the vscode.
 
-### Run simulation in the office
+## Simulation Execution Guide
+This section describes how to launch the TurtleBot4 simulation in Gazebo, visualize sensor data in RViz2, and execute the object detection node.
 
-1. Launch simulation in the gazebo:
+### Prerequisites
+Before running the simulation, make sure the workspace has been built and all dependencies are properly installed.
 
-In first terminal:
+**1. Launch Gazebo Simulation**
+
+Open a terminal and execute the following commands:
 ```bash
 colcon build
 source install/setup.bash
 ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=office model:=lite x:=4 y:=7
 ```
-2. Execute visualization in the RVIZ2:
+This command starts the TurtleBot4 Lite model in the `office` world with the specified initial position.
 
-In second terminal:
+**2. Visualize Sensor Data in RViz2**
+
+Open a second terminal and start RViz2:
 ```bash
 source install/setup.bash
 rviz2
 ```
+*Add Camera Topics*
 
-Add -> By topic -> /oakd/rgb/preview/depth/Image
+*Depth Image*
+1. Click Add → By topic
+2. Select:
+`/oakd/rgb/preview/depth/Image`
+3. Configure the display parameters as shown below:
 
-Set bellow settings:
-![alt text](images/image.png)
+<p align="center">
+  <img src="images/image.png" alt="RViz depth image configuration">
+  <br>
+  <em>Figure 1: RViz depth image configuration</em>
+</p>
 
-Add -> By topic -> /oakd/rgb/preview/image_raw/Image
+*RGB Image*
+1. Click Add → By topic
+2. Select:
+`oakd/rgb/preview/image_raw/Image`
 
-3. Execute object detection:
+**3. Run Object Detection**
 
-In third terminal
+Open a third terminal and execute:
 ```bash
 source install/setup.bash
 python3 turtlebot_sim/uav_camera_det.py
 ```
-
+This script subscribes to the camera topics and performs object detection during the simulation runtime.
 
