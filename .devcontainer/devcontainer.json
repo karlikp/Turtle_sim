@@ -26,8 +26,8 @@
   ],
 
   "containerEnv": {
-    "IGN_GAZEBO_RESOURCE_PATH": "/opt/ros/humble/share:/workspaces/turtle_sim/install:/workspaces/turtle_sim/turtlebot_sim/turtlebot4_ignition_bringup/models",
-    "GZ_SIM_RESOURCE_PATH": "/opt/ros/humble/share:/workspaces/turtle_sim/install:/workspaces/turtle_sim/turtlebot_sim/turtlebot4_ignition_bringup/models",
+    "IGN_GAZEBO_RESOURCE_PATH": "/opt/ros/humble/share:/workspaces/Turtle_sim/install:/workspaces/Turtle_sim/turtlebot_sim/turtlebot4_ignition_bringup/models",
+    "GZ_SIM_RESOURCE_PATH": "/opt/ros/humble/share:/workspaces/Turtle_sim/install:/workspaces/Turtle_sim/turtlebot_sim/turtlebot4_ignition_bringup/models",
     "ROS_DOMAIN_ID": "0",
     "NVIDIA_VISIBLE_DEVICES": "all",
     "NVIDIA_DRIVER_CAPABILITIES": "all",
