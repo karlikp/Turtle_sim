@@ -88,3 +88,19 @@ python3 turtlebot_sim/camera_det.py
   <br>
   <em>Figure 4: Object detection view</em>
 </p>
+
+brudnopis:
+
+w momencie dodawania nowych obiektów warto zapisać świat jako nowy plik, ponieważ Gazebo może zepsuć ścieżki(zależności)
+
+pobieranie modeli gazebo: https://app.gazebosim.org/dashboard
+
+podeślij link gdzie znaleźć dokumentacje do utworzenia poruszającego się obiektu
+
+edycja świata warto robic ją lokalnie - w ścieżce pliku world.sdf
+
+uruchomienie gazebo: ign gazebo office.sdf 
+
+ Do 14.02 zrobić 
+
+ pamietaj żeby zapisywać edytowany kod
