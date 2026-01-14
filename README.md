@@ -89,18 +89,38 @@ python3 turtlebot_sim/camera_det.py
   <em>Figure 4: Object detection view</em>
 </p>
 
-brudnopis:
+### Gazebo World Editing — Practical Notes
 
-w momencie dodawania nowych obiektów warto zapisać świat jako nowy plik, ponieważ Gazebo może zepsuć ścieżki(zależności)
+**Saving the World File**
 
-pobieranie modeli gazebo: https://app.gazebosim.org/dashboard
+When adding new objects to the world, it is recommended to save the world as a new file.
+Gazebo may sometimes break relative paths and dependencies when modifying existing worlds.
 
-podeślij link gdzie znaleźć dokumentacje do utworzenia poruszającego się obiektu
+**Downloading Gazebo Models**
 
-edycja świata warto robic ją lokalnie - w ścieżce pliku world.sdf
+Gazebo models can be downloaded from the official model repository:
 
-uruchomienie gazebo: ign gazebo office.sdf 
+`https://app.gazebosim.org/dashboard`
 
- Do 14.02 zrobić 
+Relevant sections include:
+- Model plugins
+- Joint control
+- System plugins (Ignition / Gazebo Sim)
 
- pamietaj żeby zapisywać edytowany kod
+**Editing the World File Locally**
+
+It is recommended to edit the world file locally by modifying the .sdf file directly, for example:
+
+`worlds/world.sdf`
+
+This provides better control over object definitions and dependencies than editing solely through the GUI.
+
+**Running Gazebo with a Specific World**
+
+To launch Gazebo with a selected world file:
+
+`ign gazebo office.sdf`
+
+Replace `office.sdf` with the path to your desired world file if it is not in the current directory.
+
+
