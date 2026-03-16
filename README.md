@@ -8,12 +8,12 @@
   - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
   - [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
-### Docker build
+### Docker build (step 1)
 ```bash
 docker build -t turtle_sim:latest . --build-arg USER_UID=$(id -u)
 ```
 
-### Run for development
+### Run for development (step 2)
 Running docker with GPU support requires [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html), but if you don't have NVIDIA GPU, you can remove the `--gpus=all` flag in `devcontainer.json` and run this container only with CPU.
 
 Click `Ctrl+Shift+P` and select `Dev Containers: Rebuild and Reopen in Container`. 
@@ -24,7 +24,7 @@ To rebuild workspace use shortcut `Ctrl+Shift+B` in the vscode.
 ## Simulation Execution Guide
 This section describes how to launch the TurtleBot4 simulation in Gazebo, visualize sensor data in RViz2, and execute the object detection node.
 
-### Prerequisites
+### Prerequisites (step 3)
 Before running the simulation, make sure the workspace has been built and all dependencies are properly installed.
 
 **1. Launch Gazebo Simulation**
