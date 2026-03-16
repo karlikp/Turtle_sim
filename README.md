@@ -19,6 +19,8 @@ Running docker with GPU support requires [nvidia-container-toolkit](https://docs
 Click `Ctrl+Shift+P` and select `Dev Containers: Rebuild and Reopen in Container`. 
 This will open the repository in the container and you can start developing.
 
+Then to open the command line press `Ctrl + ~`
+
 To rebuild workspace use shortcut `Ctrl+Shift+B` in the vscode.
 
 ## Simulation Execution Guide (step 3)
