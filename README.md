@@ -21,10 +21,10 @@ This will open the repository in the container and you can start developing.
 
 To rebuild workspace use shortcut `Ctrl+Shift+B` in the vscode.
 
-## Simulation Execution Guide
+## Simulation Execution Guide (step 3)
 This section describes how to launch the TurtleBot4 simulation in Gazebo, visualize sensor data in RViz2, and execute the object detection node.
 
-### Prerequisites (step 3)
+### Prerequisites
 Before running the simulation, make sure the workspace has been built and all dependencies are properly installed.
 
 **1. Launch Gazebo Simulation**
