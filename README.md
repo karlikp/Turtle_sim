@@ -29,6 +29,23 @@ This section describes how to launch the TurtleBot4 simulation in Gazebo, visual
 ### Prerequisites
 Before running the simulation, make sure the workspace has been built and all dependencies are properly installed.
 
+**0. Gazebo launch in WSL - Ubuntu 22.04**
+Zaciągnij zależności modeli do gazebo
+```bash
+export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:$HOME/prj/Turtle_sim/turtlebot_sim/turtlebot4_ignition_bringup/models
+```
+Ustawienie zmiennych środowiskowych
+```bash
+export ROS_DOMAIN_ID=0
+export ROS_LOCALHOST_ONLY=0
+```
+Uruchom gazebo
+```bash
+ign gazebo /home/aziebinski/prj/Turtle_sim/turtlebot_sim/turtlebot4_ignition_bringup/worlds/office.sdf --render-engine ogre
+```
+
+
+
 **1. Launch Gazebo Simulation**
 
 Open a terminal and execute the following commands:
